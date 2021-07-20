@@ -4,7 +4,7 @@ using Allura.Challenge.Database.Repositories.Interfaces;
 
 namespace Allura.Challenge.Database.Repositories
 {
-    public class MovieRepository : BaseRepository<Movie>
+    public class MovieRepository : BaseRepository<Movie>, IMovieRepository<Movie>
     {
         protected override string CollectionName => "Movies";
 

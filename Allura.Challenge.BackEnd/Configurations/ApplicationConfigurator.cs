@@ -1,7 +1,11 @@
 ﻿using System;
+using Allura.Challenge.BackEnd.Services;
+using Allura.Challenge.Database.Repositories;
 using Allura.Challenge.Database.Repositories.Base;
 using Allura.Challenge.Database.Repositories.Interfaces;
-using AutoMapper;
+using Allura.Challenge.Domain.Interfaces;
+using Allura.Challenge.Domain.Validators;
+using Allura.Challenge.Domain.Validators.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -21,9 +25,12 @@ namespace Allura.Challenge.BackEnd.Configurations
 
         protected internal static void Initialize(IServiceCollection serviceCollection)
         {
-            serviceCollection.AddSingleton(MapperConfiguration.Instance.Mapper);
-            serviceCollection.Configure<ConnectionSettings>(ConfigurationsWrapper.GetConfiguration().GetSection(nameof(ConnectionSettings)));
-            serviceCollection.AddSingleton<IConnectionSettings>(setting =>  setting.GetRequiredService<IOptions<ConnectionSettings>>().Value);
+            serviceCollection.AddSingleton(MapperConfiguration.Instance.Mapper)
+                             .Configure<ConnectionSettings>(ConfigurationsWrapper.GetConfiguration().GetSection("ConnectionSettings"))
+                             .AddSingleton<IConnectionSettings>(setting => setting.GetRequiredService<IOptions<ConnectionSettings>>().Value)
+                             .AddSingleton<IValidator<Domain.Models.Data.Movie>, MovieValidator>()
+                             .AddTransient<IMovieRepository<Database.Models.Movie>, MovieRepository>()
+                             .AddTransient<IMovieService, MovieService>();
         }
 
         public object GetService(Type tipo)

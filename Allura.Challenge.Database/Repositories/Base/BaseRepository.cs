@@ -70,28 +70,14 @@ namespace Allura.Challenge.Database.Repositories.Base
 
         public bool Add(T entity)
         {
-            try
-            {
-                Collection.InsertOne(entity);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            Collection.InsertOne(entity);
+            return true;
         }
 
         public async Task<bool> AddAsync(T entity)
         {
-            try
-            {
-                await Collection.InsertOneAsync(entity);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            await Collection.InsertOneAsync(entity);
+            return true;
         }
 
         public bool Update(T entity)

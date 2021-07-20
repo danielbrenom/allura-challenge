@@ -1,13 +1,13 @@
 ﻿using System;
-using AutoMapper;
 using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+using Allura.Challenge.BackEnd.Configurations;
+using AutoMapper;
 
-namespace Allura.Challenge.Domain.Extensions
+namespace Allura.Challenge.BackEnd.Extensions
 {
     public static class TypeExtension
     {
-        public static T GetAs<T>(this object obj, IServiceProvider serviceProvider, bool useMapper = true,
+        public static T GetAs<T>(this object obj, bool useMapper = true,
             T defaultObject = default, bool allowExceptions = false)
         {
             try
@@ -17,7 +17,7 @@ namespace Allura.Challenge.Domain.Extensions
                 if (obj.GetType() == typeof(T))
                     return (T) obj;
                 if (!useMapper) return (T) obj;
-                var mapper = serviceProvider.GetService<IMapper>();
+                var mapper = ApplicationConfigurator.Instance.GetService<IMapper>();
                 return mapper.Map<T>(obj);
             }
             catch (Exception)

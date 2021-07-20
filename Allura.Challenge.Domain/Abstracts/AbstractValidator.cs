@@ -15,12 +15,12 @@ namespace Allura.Challenge.Domain.Abstracts
             _builded = true;
         }
 
-        public abstract void SetRules();
+        protected abstract void SetRules();
 
         public ValidationResult Check(TEntity entity)
         {
             ValidateValidator();
-            return base.Validate(entity);
+            return Validate(entity);
         }
 
         public ValidationResult Check(TEntity entity, string ruleSet)
