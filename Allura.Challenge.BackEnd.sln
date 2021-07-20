@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allura.Challenge.BackEnd", "Allura.Challenge.BackEnd\Allura.Challenge.BackEnd.csproj", "{10FE46B0-C457-4BDC-AE56-0AC9181F2D7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allura.Challenge.Domain", "Allura.Challenge.Domain\Allura.Challenge.Domain.csproj", "{773F3525-36E9-490C-8720-21083CE2961D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allura.Challenge.Database", "Allura.Challenge.Database\Allura.Challenge.Database.csproj", "{42D72BFA-CC55-4534-8ECA-FEDCB454959F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10FE46B0-C457-4BDC-AE56-0AC9181F2D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FE46B0-C457-4BDC-AE56-0AC9181F2D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FE46B0-C457-4BDC-AE56-0AC9181F2D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FE46B0-C457-4BDC-AE56-0AC9181F2D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{773F3525-36E9-490C-8720-21083CE2961D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{773F3525-36E9-490C-8720-21083CE2961D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{773F3525-36E9-490C-8720-21083CE2961D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{773F3525-36E9-490C-8720-21083CE2961D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42D72BFA-CC55-4534-8ECA-FEDCB454959F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42D72BFA-CC55-4534-8ECA-FEDCB454959F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42D72BFA-CC55-4534-8ECA-FEDCB454959F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42D72BFA-CC55-4534-8ECA-FEDCB454959F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
