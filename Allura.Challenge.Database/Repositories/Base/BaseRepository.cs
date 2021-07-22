@@ -82,54 +82,26 @@ namespace Allura.Challenge.Database.Repositories.Base
 
         public bool Update(T entity)
         {
-            try
-            {
-                var result = Collection.ReplaceOne(e => e.Id == entity.Id, entity);
-                return result != null;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var result = Collection.ReplaceOne(e => e.Id == entity.Id, entity);
+            return result != null;
         }
 
         public async Task<bool> UpdateAsync(T entity)
         {
-            try
-            {
-                var result = await Collection.ReplaceOneAsync(e => e.Id == entity.Id, entity);
-                return result != null;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var result = await Collection.ReplaceOneAsync(e => e.Id == entity.Id, entity);
+            return result != null;
         }
 
         public bool Delete(T entity)
         {
-            try
-            {
-                var result = Collection.FindOneAndDelete(e => e.Id == entity.Id);
-                return result != null;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var result = Collection.FindOneAndDelete(e => e.Id == entity.Id);
+            return result != null;
         }
 
         public async Task<bool> DeleteAsync(T entity)
         {
-            try
-            {
-                var result = await Collection.FindOneAndDeleteAsync(e => e.Id == entity.Id);
-                return result != null;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var result = await Collection.FindOneAndDeleteAsync(e => e.Id == entity.Id);
+            return result != null;
         }
     }
 }

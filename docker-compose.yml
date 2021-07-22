@@ -1,0 +1,28 @@
+﻿version: '2.1'
+
+services :
+  allura-challenge-api:
+    image: allura-challenge-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7071:80"
+    networks: 
+      - allura-challenge-network
+    links:
+      - mongo
+        
+  mongo:
+    image: mongo:3.6
+    container_name: allura-challenge-mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - allura-challenge-network
+    environment:
+      MONGO_INITDB_DATABASE: "AlluraChallenge"
+      
+networks:
+  allura-challenge-network:
+    driver: bridge

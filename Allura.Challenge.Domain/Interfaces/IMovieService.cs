@@ -10,7 +10,7 @@ namespace Allura.Challenge.Domain.Interfaces
         Task<Movie> GetMovie(string id);
         Task<List<Movie>> GetMovies();
         Task<Movie> CreateMovie(MovieRequest movieRequest);
-        Task<Movie> UpdateMovie(MovieRequest movieRequest);
-        Task<bool> DeleteMovie(MovieRequest movieRequest);
+        Task<Movie> UpdateMovie(MovieRequest movieRequest, string id);
+        Task<bool> DeleteMovie(string id);
     }
 }

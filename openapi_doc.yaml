@@ -1,0 +1,138 @@
+﻿openapi: 3.0.0
+info:
+  title: Azure Functions OpenAPI Extension
+  version: 1.0.0
+paths:
+  "/videos/{id}":
+    get:
+      tags:
+        - Get
+      summary: Get movie
+      description: Gets a movie from the database
+      operationId: Get Movie
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Payload of MovieResponse
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/movieResponse"
+      x-ms-visibility: important
+    put:
+      tags:
+        - Update
+      summary: Update movie
+      description: Updates a movie from the database
+      operationId: Update Movie
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/movieRequest"
+      responses:
+        "200":
+          description: Payload of MovieResponse
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/movieResponse"
+      x-ms-visibility: important
+    delete:
+      tags:
+        - Delete
+      summary: Deletes movie
+      description: Deletes a movie from the database
+      operationId: Delete Movie
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Payload of OkResult
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/okResult"
+      x-ms-visibility: important
+  /videos:
+    get:
+      tags:
+        - Get
+      summary: Get movies
+      description: Gets all movies from the database
+      operationId: Get Movies
+      responses:
+        "200":
+          description: Payload of Array of MovieResponse
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/movieResponse"
+      x-ms-visibility: important
+    post:
+      tags:
+        - Add
+      summary: Add movie
+      description: Adds a new movie to the database
+      operationId: Add Movie
+      requestBody:
+        $ref: "#/components/requestBodies/movieRequest"
+      responses:
+        "201":
+          description: Payload of MovieResponse
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/movieResponse"
+      x-ms-visibility: important
+servers:
+  - url: http://localhost:7071/api
+components:
+  requestBodies:
+    movieRequest:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/movieRequest"
+      required: true
+  schemas:
+    movieRequest:
+      type: object
+      properties:
+        titulo:
+          type: string
+        descricao:
+          type: string
+        url:
+          type: string
+    movieResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        titulo:
+          type: string
+        descricao:
+          type: string
+        url:
+          type: string
+    okResult:
+      type: object
+      properties:
+        statusCode:
+          format: int32
+          type: integer

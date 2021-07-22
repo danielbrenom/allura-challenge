@@ -40,7 +40,7 @@ namespace Allura.Challenge.BackEnd.Services
         public async Task<Movie> CreateMovie(MovieRequest movieRequest)
         {
             var movie = movieRequest.GetAs<Movie>();
-            var validationResult = await Validator.CheckAsync(movie);
+            var validationResult = await Validator.CheckAsync(movie, "Create");
             if (!validationResult.IsValid)
                 throw new InvalidDataException("Movie data is invalid", validationResult.Errors);
             movie.Id = System.Guid.NewGuid().ToString("N");
@@ -50,14 +50,28 @@ namespace Allura.Challenge.BackEnd.Services
             return movie;
         }
 
-        public async Task<Movie> UpdateMovie(MovieRequest movieRequest)
+        public async Task<Movie> UpdateMovie(MovieRequest movieRequest, string id)
         {
-            throw new System.NotImplementedException();
+            var movie = movieRequest.GetAs<Movie>();
+            var validationResult = await Validator.CheckAsync(movie, "Update");
+            if (!validationResult.IsValid)
+                throw new InvalidDataException("Movie data is invalid", validationResult.Errors);
+            movie.Id = id;
+            var result = await MovieRepository.UpdateAsync(movie.GetAs<Database.Models.Movie>());
+            if(!result)
+                throw new System.Exception("An error occurred updating the movie");
+            return movie;
         }
 
-        public async Task<bool> DeleteMovie(MovieRequest movieRequest)
+        public async Task<bool> DeleteMovie(string id)
         {
-            throw new System.NotImplementedException();
+            var movie = await MovieRepository.GetAsync(id);
+            if(movie is null)
+                throw new GenericException("Movie not found", 404);
+            var result = await MovieRepository.DeleteAsync(movie);
+            if(!result)
+                throw new GenericException("Could not delete movie", 500);
+            return true;
         }
     }
 }
