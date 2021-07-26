@@ -15,6 +15,8 @@ namespace Allura.Challenge.Domain.Validators
                                            .WithMessage("Description must be filled");
                 RuleFor(m => m.Url).NotEmpty()
                                    .WithMessage("Url must be filled");
+                RuleFor(m => m.Category.Id).Length(1,100).When(m => !string.IsNullOrEmpty(m.Category.Id))
+                                     .WithMessage("Category must be filled");
             });
             RuleSet("Update", () =>
             {
@@ -24,6 +26,8 @@ namespace Allura.Challenge.Domain.Validators
                                            .WithMessage("Description must be filled");
                 RuleFor(m => m.Url).Length(1,200).When(m => !string.IsNullOrEmpty(m.Url))
                                    .WithMessage("Url must be filled");
+                RuleFor(m => m.Category.Id).Length(1,100).When(m => !string.IsNullOrEmpty(m.Category.Id))
+                                           .WithMessage("Category must be filled");
             });
         }
     }

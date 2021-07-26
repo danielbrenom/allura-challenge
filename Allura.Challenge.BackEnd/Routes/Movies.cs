@@ -31,7 +31,7 @@ namespace Allura.Challenge.BackEnd.Routes
         [OpenApiOperation("Get Movie", "Get", Summary = "Get movie", Description = "Gets a movie from the database", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiParameter("id", In = ParameterLocation.Path, Required = true, Type = typeof(string))]
         [OpenApiResponseWithBody(HttpStatusCode.OK, "application/json", typeof(MovieResponse))]
-        [FunctionName(nameof(Get))]
+        [FunctionName(nameof(Movies) + nameof(Get))]
         public async Task<IActionResult> Get([HttpTrigger(AuthorizationLevel.Function, "get", Route = "videos/{id}")]
             HttpRequest req, string id, ILogger log)
         {
@@ -52,7 +52,7 @@ namespace Allura.Challenge.BackEnd.Routes
 
         [OpenApiOperation("Get Movies", "Get", Summary = "Get movies", Description = "Gets all movies from the database", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiResponseWithBody(HttpStatusCode.OK, "application/json", typeof(List<MovieResponse>))]
-        [FunctionName(nameof(GetAll))]
+        [FunctionName(nameof(Movies) + nameof(GetAll))]
         public async Task<IActionResult> GetAll([HttpTrigger(AuthorizationLevel.Function, "get", Route = "videos")]
             HttpRequest req, ILogger log)
         {
@@ -75,7 +75,7 @@ namespace Allura.Challenge.BackEnd.Routes
         [OpenApiOperation("Add Movie", "Add", Summary = "Add movie", Description = "Adds a new movie to the database", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiRequestBody("application/json", typeof(MovieRequest), Required = true)]
         [OpenApiResponseWithBody(HttpStatusCode.Created, "application/json", typeof(MovieResponse))]
-        [FunctionName(nameof(Add))]
+        [FunctionName(nameof(Movies) + nameof(Add))]
         public async Task<IActionResult> Add([HttpTrigger(AuthorizationLevel.Function, "post", Route = "videos")]
             HttpRequest req, ILogger log)
         {
@@ -100,8 +100,8 @@ namespace Allura.Challenge.BackEnd.Routes
         [OpenApiParameter("id", In = ParameterLocation.Path, Required = true, Type = typeof(string))]
         [OpenApiRequestBody("application/json", typeof(MovieRequest), Required = true)]
         [OpenApiResponseWithBody(HttpStatusCode.OK, "application/json", typeof(MovieResponse))]
-        [FunctionName(nameof(Update))]
-        public async Task<IActionResult> Update([HttpTrigger(AuthorizationLevel.Function, "put", Route = "videos/{id}")]
+        [FunctionName(nameof(Movies) + nameof(Update))]
+        public async Task<IActionResult> Update([HttpTrigger(AuthorizationLevel.Function, "put", "patch", Route = "videos/{id}")]
             HttpRequest req, string id, ILogger log)
         {
             try
@@ -124,7 +124,7 @@ namespace Allura.Challenge.BackEnd.Routes
         [OpenApiOperation("Delete Movie", "Delete", Summary = "Deletes movie", Description = "Deletes a movie from the database", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiParameter("id", In = ParameterLocation.Path, Required = true, Type = typeof(string))]
         [OpenApiResponseWithBody(HttpStatusCode.OK, "application/json", typeof(OkResult))]
-        [FunctionName(nameof(Delete))]
+        [FunctionName(nameof(Movies) + nameof(Delete))]
         public async Task<IActionResult> Delete([HttpTrigger(AuthorizationLevel.Function, "delete", Route = "videos/{id}")]
             HttpRequest req, string id, ILogger log)
         {

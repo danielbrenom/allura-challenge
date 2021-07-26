@@ -29,8 +29,11 @@ namespace Allura.Challenge.BackEnd.Configurations
                              .Configure<ConnectionSettings>(ConfigurationsWrapper.GetConfiguration().GetSection("ConnectionSettings"))
                              .AddSingleton<IConnectionSettings>(setting => setting.GetRequiredService<IOptions<ConnectionSettings>>().Value)
                              .AddSingleton<IValidator<Domain.Models.Data.Movie>, MovieValidator>()
+                             .AddSingleton<IValidator<Domain.Models.Data.Category>, CategoryValidator>()
                              .AddTransient<IMovieRepository<Database.Models.Movie>, MovieRepository>()
-                             .AddTransient<IMovieService, MovieService>();
+                             .AddTransient<ICategoryRepository<Database.Models.Category>, CategoryRepository>()
+                             .AddTransient<IMovieService, MovieService>()
+                             .AddTransient<ICategoryService, CategoryService>();
         }
 
         public object GetService(Type tipo)
