@@ -1,10 +1,372 @@
 {
 	"info": {
-		"_postman_id": "0be8e9e7-a93d-4e7f-a3f4-623277db1384",
-		"name": "Allura Challenge API",
+		"_postman_id": "bd64a998-678b-4316-b822-e6ee6a10b79a",
+		"name": "Alura Challenge API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "categorias",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Get Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/categorias/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"categorias",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "sit",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Gets a Category from the database"
+							},
+							"response": [
+								{
+									"name": "Payload of CategoryResponse",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/categorias/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"categorias",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"Lorem nulla ut id\",\n \"titulo\": \"id ut ad deserunt\",\n \"cor\": \"incididunt cupidatat minim nisi\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update Category",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"titulo\": \"in consectetur\",\n    \"cor\": \"magna incididunt cillum ipsum nisi\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/categorias/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"categorias",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "sit",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Updates a Category from the database"
+							},
+							"response": [
+								{
+									"name": "Payload of CategoryResponse",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/categorias/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"categorias",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"id\": \"Lorem nulla ut id\",\n \"titulo\": \"id ut ad deserunt\",\n \"cor\": \"incididunt cupidatat minim nisi\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Deletes Category",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/categorias/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"categorias",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "sit",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Deletes a Category from the database"
+							},
+							"response": [
+								{
+									"name": "Payload of OkResult",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/categorias/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"categorias",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"statusCode\": 24411134\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Movies by Category",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/categorias/:id/videos",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"categorias",
+										":id",
+										"videos"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "sit",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Gets Movies by Category from the database"
+							},
+							"response": [
+								{
+									"name": "Payload of MovieByCategoryResponse",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/categorias/:id/videos",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"categorias",
+												":id",
+												"videos"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"videos\": [\n  {\n   \"id\": \"Duis do\",\n   \"titulo\": \"sint dolor\",\n   \"descricao\": \"laboris deserunt magna\",\n   \"url\": \"irure\",\n   \"categoriaId\": \"inci\"\n  },\n  {\n   \"id\": \"veniam quis\",\n   \"titulo\": \"adipisicing aliquip ullamco laborum ut\",\n   \"descricao\": \"in ad commodo\",\n   \"url\": \"nostrud ea voluptate velit\",\n   \"categoriaId\": \"dolor veniam\"\n  }\n ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/categorias",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categorias"
+							]
+						},
+						"description": "Gets all Categories from the database"
+					},
+					"response": [
+						{
+							"name": "Payload of Array of CategoryResponse",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/categorias",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"categorias"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"id\": \"labore ullamco\",\n  \"titulo\": \"do ex ex\",\n  \"cor\": \"sed ad sint ipsum\"\n },\n {\n  \"id\": \"sunt incididunt\",\n  \"titulo\": \"in Duis i\",\n  \"cor\": \"aliqua Excepteur proident enim\"\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"titulo\": \"in consectetur\",\n    \"cor\": \"magna incididunt cillum ipsum nisi\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/categorias",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"categorias"
+							]
+						},
+						"description": "Adds a new Category to the database"
+					},
+					"response": [
+						{
+							"name": "Payload of CategoryResponse",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/categorias",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"categorias"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": \"Lorem nulla ut id\",\n \"titulo\": \"id ut ad deserunt\",\n \"cor\": \"incididunt cupidatat minim nisi\"\n}"
+						}
+					]
+				}
+			]
+		},
 		{
 			"name": "videos",
 			"item": [
@@ -22,9 +384,7 @@
 											"    pm.response.to.have.status(200);\r",
 											"    pm.response.to.be.json;\r",
 											"    postman.setNextRequest(\"Get movies\");\r",
-											"});\r",
-											"\r",
-											""
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -45,7 +405,8 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "{{movieId}}"
+											"value": "sit",
+											"description": "(Required) "
 										}
 									]
 								},
@@ -75,7 +436,7 @@
 									},
 									"status": "OK",
 									"code": 200,
-									"_postman_previewlanguage": "Text",
+									"_postman_previewlanguage": "json",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -83,7 +444,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n \"id\": \"anim eu \",\n \"titulo\": \"Duis est dolor \",\n \"descricao\": \"reprehenderit\",\n \"url\": \"laborum eiusmod u\"\n}"
+									"body": "{\n \"id\": \"ut dolor\",\n \"titulo\": \"Lorem minim ut\",\n \"descricao\": \"est Lorem\",\n \"url\": \"culpa ad in non\",\n \"categoriaId\": \"dolore ut\"\n}"
 								}
 							]
 						},
@@ -105,15 +466,15 @@
 							],
 							"request": {
 								"method": "PUT",
-								"header": [],
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"titulo\": \"sn\",\r\n    \"descricao\": \"ajdbnsfk\",\r\n    \"url\": \"sknkl\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
+									"raw": "{\n    \"titulo\": \"Duis laborum tempor ea irure\",\n    \"descricao\": \"in Duis nul\",\n    \"url\": \"nulla dolor\",\n    \"categoriaId\": \"proident sunt veniam qui magna\"\n}"
 								},
 								"url": {
 									"raw": "{{baseUrl}}/videos/:id",
@@ -127,8 +488,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "{{movieId}}",
-											"type": "any",
+											"value": "sit",
 											"description": "(Required) "
 										}
 									]
@@ -159,7 +519,7 @@
 									},
 									"status": "OK",
 									"code": 200,
-									"_postman_previewlanguage": "Text",
+									"_postman_previewlanguage": "json",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -167,7 +527,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n \"id\": \"anim eu \",\n \"titulo\": \"Duis est dolor \",\n \"descricao\": \"reprehenderit\",\n \"url\": \"laborum eiusmod u\"\n}"
+									"body": "{\n \"id\": \"ut dolor\",\n \"titulo\": \"Lorem minim ut\",\n \"descricao\": \"est Lorem\",\n \"url\": \"culpa ad in non\",\n \"categoriaId\": \"dolore ut\"\n}"
 								}
 							]
 						},
@@ -202,7 +562,7 @@
 									"variable": [
 										{
 											"key": "id",
-											"value": "{{movieId}}",
+											"value": "sit",
 											"description": "(Required) "
 										}
 									]
@@ -233,7 +593,7 @@
 									},
 									"status": "OK",
 									"code": 200,
-									"_postman_previewlanguage": "Text",
+									"_postman_previewlanguage": "json",
 									"header": [
 										{
 											"key": "Content-Type",
@@ -241,7 +601,7 @@
 										}
 									],
 									"cookie": [],
-									"body": "{\n \"statusCode\": 98135461\n}"
+									"body": "{\n \"statusCode\": 24411134\n}"
 								}
 							]
 						}
@@ -267,12 +627,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/videos",
+							"raw": "{{baseUrl}}/videos?search=sit",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"videos"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "sit"
+								}
 							]
 						},
 						"description": "Gets all movies from the database"
@@ -284,18 +650,24 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/videos",
+									"raw": "{{baseUrl}}/videos?search=sit",
 									"host": [
 										"{{baseUrl}}"
 									],
 									"path": [
 										"videos"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "sit"
+										}
 									]
 								}
 							},
 							"status": "OK",
 							"code": 200,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": "json",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -303,7 +675,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "[\n {\n  \"id\": \"laborum do esse ea\",\n  \"titulo\": \"esse irure aliquip sed culpa\",\n  \"descricao\": \"nostrud esse aliqua do\",\n  \"url\": \"mollit incididunt elit\"\n },\n {\n  \"id\": \"et nisi quis \",\n  \"titulo\": \"exercitation quis esse ut\",\n  \"descricao\": \"magna ullamco nulla\",\n  \"url\": \"nulla\"\n }\n]"
+							"body": "[\n {\n  \"id\": \"\",\n  \"titulo\": \"ea\",\n  \"descricao\": \"sit\",\n  \"url\": \"ad labore eu\",\n  \"categoriaId\": \"exercitation laborum sed dolore\"\n },\n {\n  \"id\": \"exercitation esse ullamco\",\n  \"titulo\": \"est incididunt elit\",\n  \"descricao\": \"ex aliquip esse Ut\",\n  \"url\": \"in\",\n  \"categoriaId\": \"Duis ad ut\"\n }\n]"
 						}
 					]
 				},
@@ -327,15 +699,15 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"titulo\": \"sn\",\r\n    \"descricao\": \"ajdbnsfk\",\r\n    \"url\": \"sknkl\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\n    \"titulo\": \"Duis laborum tempor ea irure\",\n    \"descricao\": \"in Duis nul\",\n    \"url\": \"nulla dolor\",\n    \"categoriaId\": \"proident sunt veniam qui magna\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/videos",
@@ -366,7 +738,7 @@
 							},
 							"status": "Created",
 							"code": 201,
-							"_postman_previewlanguage": "Text",
+							"_postman_previewlanguage": "json",
 							"header": [
 								{
 									"key": "Content-Type",
@@ -374,7 +746,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"id\": \"anim eu \",\n \"titulo\": \"Duis est dolor \",\n \"descricao\": \"reprehenderit\",\n \"url\": \"laborum eiusmod u\"\n}"
+							"body": "{\n \"id\": \"ut dolor\",\n \"titulo\": \"Lorem minim ut\",\n \"descricao\": \"est Lorem\",\n \"url\": \"culpa ad in non\",\n \"categoriaId\": \"dolore ut\"\n}"
 						}
 					]
 				}

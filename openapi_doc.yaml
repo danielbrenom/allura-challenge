@@ -3,6 +3,123 @@ info:
   title: Azure Functions OpenAPI Extension
   version: 1.0.0
 paths:
+  "/categorias/{id}":
+    get:
+      tags:
+        - Get
+      summary: Get Category
+      description: Gets a Category from the database
+      operationId: Get Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Payload of CategoryResponse
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/categoryResponse"
+      x-ms-visibility: important
+    put:
+      tags:
+        - Update
+      summary: Update Category
+      description: Updates a Category from the database
+      operationId: Update Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        $ref: "#/components/requestBodies/categoryRequest"
+      responses:
+        "200":
+          description: Payload of CategoryResponse
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/categoryResponse"
+      x-ms-visibility: important
+    delete:
+      tags:
+        - Delete
+      summary: Deletes Category
+      description: Deletes a Category from the database
+      operationId: Delete Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Payload of OkResult
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/okResult"
+      x-ms-visibility: important
+  /categorias:
+    get:
+      tags:
+        - Get
+      summary: Get Categories
+      description: Gets all Categories from the database
+      operationId: Get Categories
+      responses:
+        "200":
+          description: Payload of Array of CategoryResponse
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/categoryResponse"
+      x-ms-visibility: important
+    post:
+      tags:
+        - Add
+      summary: Add Category
+      description: Adds a new Category to the database
+      operationId: Add Category
+      requestBody:
+        $ref: "#/components/requestBodies/categoryRequest"
+      responses:
+        "201":
+          description: Payload of CategoryResponse
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/categoryResponse"
+      x-ms-visibility: important
+  "/categorias/{id}/videos":
+    get:
+      tags:
+        - Get
+      summary: Get Movies by Category
+      description: Gets Movies by Category from the database
+      operationId: Get by Category
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Payload of MovieByCategoryResponse
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/movieByCategoryResponse"
+      x-ms-visibility: important
   "/videos/{id}":
     get:
       tags:
@@ -73,6 +190,11 @@ paths:
       summary: Get movies
       description: Gets all movies from the database
       operationId: Get Movies
+      parameters:
+        - in: query
+          name: search
+          schema:
+            type: string
       responses:
         "200":
           description: Payload of Array of MovieResponse
@@ -109,7 +231,36 @@ components:
           schema:
             $ref: "#/components/schemas/movieRequest"
       required: true
+    categoryRequest:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/categoryRequest"
+      required: true
   schemas:
+    categoryRequest:
+      type: object
+      properties:
+        titulo:
+          type: string
+        cor:
+          type: string
+    categoryResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        titulo:
+          type: string
+        cor:
+          type: string
+    movieByCategoryResponse:
+      type: object
+      properties:
+        videos:
+          type: array
+          items:
+            $ref: "#/components/schemas/movieResponse"
     movieRequest:
       type: object
       properties:
@@ -118,6 +269,8 @@ components:
         descricao:
           type: string
         url:
+          type: string
+        categoriaId:
           type: string
     movieResponse:
       type: object
@@ -129,6 +282,8 @@ components:
         descricao:
           type: string
         url:
+          type: string
+        categoriaId:
           type: string
     okResult:
       type: object

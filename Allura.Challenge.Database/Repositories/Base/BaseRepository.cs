@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using Allura.Challenge.Database.Repositories.Interfaces;
@@ -50,9 +51,9 @@ namespace Allura.Challenge.Database.Repositories.Base
             return result.ToEnumerable().AsQueryable();
         }
 
-        public IQueryable<T> GetAll(Func<T, bool> query)
+        public IQueryable<T> GetAll(Expression<Func<T, bool>> query)
         {
-            var result = Collection.Find(e => query.Invoke(e));
+            var result = Collection.Find(query);
             return result.ToEnumerable().AsQueryable();
         }
 
@@ -62,9 +63,9 @@ namespace Allura.Challenge.Database.Repositories.Base
             return result.ToEnumerable().AsQueryable();
         }
 
-        public async Task<IQueryable<T>> GetAllAsync(Func<T, bool> query)
+        public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> query)
         {
-            var result = await Collection.FindAsync(e => query.Invoke(e));
+            var result = await Collection.FindAsync(query);
             return result.ToEnumerable().AsQueryable();
         }
 

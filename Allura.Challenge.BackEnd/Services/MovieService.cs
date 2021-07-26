@@ -39,6 +39,21 @@ namespace Allura.Challenge.BackEnd.Services
             return result.ToList().GetAs<List<Movie>>();
         }
 
+        public async Task<List<Movie>> GetMovies(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+                return await GetMovies();
+
+            var result = await MovieRepository.GetAllAsync(m => m.Title.ToLowerInvariant().Contains(query.ToLowerInvariant()));
+            return result.ToList().GetAs<List<Movie>>();
+        }
+        
+        public async Task<List<Movie>> GetMoviesByCategory(string category)
+        {
+            var result = await MovieRepository.GetAllAsync(m => m.Category.Id.Equals(category));
+            return result.ToList().GetAs<List<Movie>>();
+        }
+
         public async Task<Movie> CreateMovie(MovieRequest movieRequest)
         {
             var movie = movieRequest.GetAs<Movie>();

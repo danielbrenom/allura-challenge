@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Allura.Challenge.Database.Repositories.Interfaces
@@ -12,9 +13,9 @@ namespace Allura.Challenge.Database.Repositories.Interfaces
         T Get(string id);
         Task<T> GetAsync(string id);
         IQueryable<T> GetAll();
-        IQueryable<T> GetAll(Func<T, bool> query);
+        IQueryable<T> GetAll(Expression<Func<T, bool>> query);
         Task<IQueryable<T>> GetAllAsync();
-        Task<IQueryable<T>> GetAllAsync(Func<T, bool> query);
+        Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> query);
 
         #endregion
 

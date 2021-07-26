@@ -9,6 +9,8 @@ namespace Allura.Challenge.Domain.Interfaces
     {
         Task<Movie> GetMovie(string id);
         Task<List<Movie>> GetMovies();
+        Task<List<Movie>> GetMovies(string query);
+        Task<List<Movie>> GetMoviesByCategory(string category);
         Task<Movie> CreateMovie(MovieRequest movieRequest);
         Task<Movie> UpdateMovie(MovieRequest movieRequest, string id);
         Task<bool> DeleteMovie(string id);
