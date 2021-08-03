@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Allura.Challenge.BackEnd.Extensions;
+using Allura.Challenge.Database.Repositories.Base;
 using Allura.Challenge.Database.Repositories.Interfaces;
 using Allura.Challenge.Domain.Exceptions;
 using Allura.Challenge.Domain.Interfaces;
@@ -33,24 +34,28 @@ namespace Allura.Challenge.BackEnd.Services
             return result.GetAs<Movie>();
         }
 
-        public async Task<List<Movie>> GetMovies()
+        public async Task<List<Movie>> GetMovies(string page)
         {
-            var result = await MovieRepository.GetAllAsync();
+            var paginator = new BasePaginator(5) {Page = string.IsNullOrEmpty(page) ? 1 : int.Parse(page)};
+            var result = await MovieRepository.GetAllAsync(paginator);
             return result.ToList().GetAs<List<Movie>>();
         }
 
-        public async Task<List<Movie>> GetMovies(string query)
+        public async Task<List<Movie>> GetMovies(string query, string page)
         {
             if (string.IsNullOrEmpty(query))
-                return await GetMovies();
+                return await GetMovies(page);
 
-            var result = await MovieRepository.GetAllAsync(m => m.Title.ToLowerInvariant().Contains(query.ToLowerInvariant()));
+            var paginator = new BasePaginator(5) {Page = string.IsNullOrEmpty(page) ? 1 : int.Parse(page)};
+
+            var result = await MovieRepository.GetAllAsync(m => m.Title.ToLowerInvariant().Contains(query.ToLowerInvariant()), paginator);
             return result.ToList().GetAs<List<Movie>>();
         }
         
-        public async Task<List<Movie>> GetMoviesByCategory(string category)
+        public async Task<List<Movie>> GetMoviesByCategory(string category, string page)
         {
-            var result = await MovieRepository.GetAllAsync(m => m.Category.Id.Equals(category));
+            var paginator = new BasePaginator(5) {Page = string.IsNullOrEmpty(page) ? 1 : int.Parse(page)};
+            var result = await MovieRepository.GetAllAsync(m => m.Category.Id.Equals(category), paginator);
             return result.ToList().GetAs<List<Movie>>();
         }
 

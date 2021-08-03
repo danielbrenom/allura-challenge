@@ -52,6 +52,7 @@ namespace Allura.Challenge.BackEnd.Routes
         }
 
         [OpenApiOperation("Get Categories", "Get", Summary = "Get Categories", Description = "Gets all Categories from the database", Visibility = OpenApiVisibilityType.Important)]
+        [OpenApiParameter("page", In = ParameterLocation.Query, Required = false, Type = typeof(string))]
         [OpenApiResponseWithBody(HttpStatusCode.OK, "application/json", typeof(List<CategoryResponse>))]
         [FunctionName(nameof(Categories) + nameof(GetAll))]
         public async Task<IActionResult> GetAll([HttpTrigger(AuthorizationLevel.Function, "get", Route = "categorias")]
@@ -59,7 +60,8 @@ namespace Allura.Challenge.BackEnd.Routes
         {
             try
             {
-                var category = await CategoryService.GetCategories();
+                var page = req.Query["page"];
+                var category = await CategoryService.GetCategories(page);
                 return new JsonResult(category.GetAs<List<CategoryResponse>>());
             }
             catch (Domain.Exceptions.GenericException e)
@@ -74,6 +76,7 @@ namespace Allura.Challenge.BackEnd.Routes
 
         [OpenApiOperation("Get by Category", "Get", Summary = "Get Movies by Category", Description = "Gets Movies by Category from the database", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiParameter("id", In = ParameterLocation.Path, Required = true, Type = typeof(string))]
+        [OpenApiParameter("page", In = ParameterLocation.Query, Required = false, Type = typeof(string))]
         [OpenApiResponseWithBody(HttpStatusCode.OK, "application/json", typeof(MovieByCategoryResponse))]
         [FunctionName(nameof(Categories) + nameof(GetAllByCategory))]
         public async Task<IActionResult> GetAllByCategory([HttpTrigger(AuthorizationLevel.Function, "get", Route = "categorias/{id}/videos")]
@@ -81,7 +84,8 @@ namespace Allura.Challenge.BackEnd.Routes
         {
             try
             {
-                var moviesByCategory = await MovieService.GetMoviesByCategory(id);
+                var page = req.Query["page"];
+                var moviesByCategory = await MovieService.GetMoviesByCategory(id, page);
                 return new JsonResult(new MovieByCategoryResponse {Movies = moviesByCategory.GetAs<List<MovieResponse>>()});
             }
             catch (Domain.Exceptions.GenericException e)

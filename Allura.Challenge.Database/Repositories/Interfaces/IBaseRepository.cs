@@ -15,7 +15,9 @@ namespace Allura.Challenge.Database.Repositories.Interfaces
         IQueryable<T> GetAll();
         IQueryable<T> GetAll(Expression<Func<T, bool>> query);
         Task<IQueryable<T>> GetAllAsync();
+        Task<IQueryable<T>> GetAllAsync(IBasePaginator paginator);
         Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> query);
+        Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> query, IBasePaginator paginator);
 
         #endregion
 

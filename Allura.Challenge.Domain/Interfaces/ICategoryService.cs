@@ -8,7 +8,7 @@ namespace Allura.Challenge.Domain.Interfaces
     public interface ICategoryService
     {
         Task<Category> GetCategory(string id);
-        Task<List<Category>> GetCategories();
+        Task<List<Category>> GetCategories(string page);
         Task<Category> CreateCategory(CategoryRequest categoryRequest);
         Task<Category> UpdateCategory(CategoryRequest categoryRequest, string id);
         Task<bool> DeleteCategory(string id);

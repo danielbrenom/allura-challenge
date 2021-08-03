@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Allura.Challenge.BackEnd.Extensions;
 using Allura.Challenge.Database.Models;
+using Allura.Challenge.Database.Repositories.Base;
 using Allura.Challenge.Database.Repositories.Interfaces;
 using Allura.Challenge.Domain.Exceptions;
 using Allura.Challenge.Domain.Interfaces;
@@ -30,9 +31,10 @@ namespace Allura.Challenge.BackEnd.Services
             return result.GetAs<Domain.Models.Data.Category>();
         }
 
-        public async Task<List<Domain.Models.Data.Category>> GetCategories()
+        public async Task<List<Domain.Models.Data.Category>> GetCategories(string page)
         {
-            var result = await Repository.GetAllAsync();
+            var paginator = new BasePaginator(5) {Page = string.IsNullOrEmpty(page) ? 1 : int.Parse(page)};
+            var result = await Repository.GetAllAsync(paginator);
             return result.ToList().GetAs<List<Domain.Models.Data.Category>>();
         }
 

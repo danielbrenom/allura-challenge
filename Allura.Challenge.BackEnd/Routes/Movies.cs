@@ -52,6 +52,7 @@ namespace Allura.Challenge.BackEnd.Routes
 
         [OpenApiOperation("Get Movies", "Get", Summary = "Get movies", Description = "Gets all movies from the database", Visibility = OpenApiVisibilityType.Important)]
         [OpenApiParameter("search", In = ParameterLocation.Query, Required = false, Type = typeof(string))]
+        [OpenApiParameter("page", In = ParameterLocation.Query, Required = false, Type = typeof(string))]
         [OpenApiResponseWithBody(HttpStatusCode.OK, "application/json", typeof(List<MovieResponse>))]
         [FunctionName(nameof(Movies) + nameof(GetAll))]
         public async Task<IActionResult> GetAll([HttpTrigger(AuthorizationLevel.Function, "get", Route = "videos")]
@@ -60,7 +61,8 @@ namespace Allura.Challenge.BackEnd.Routes
             try
             {
                 var query = req.Query["search"];
-                var movie = await MovieService.GetMovies(query);
+                var page = req.Query["page"];
+                 var movie = await MovieService.GetMovies(query, page);
                 return new JsonResult(movie.GetAs<List<MovieResponse>>());
             }
             catch (Domain.Exceptions.GenericException e)

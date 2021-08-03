@@ -63,10 +63,30 @@ namespace Allura.Challenge.Database.Repositories.Base
             return result.ToEnumerable().AsQueryable();
         }
 
+        public async Task<IQueryable<T>> GetAllAsync(IBasePaginator paginator)
+        {
+            return await Task.Run(() =>
+            {
+                var result = Collection.Find(_ => true).Skip(paginator.FirstItemOnPage())
+                                       .Limit(paginator.ItemsPerPage);
+                return result.ToEnumerable().AsQueryable();
+            });
+        }
+
         public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> query)
         {
             var result = await Collection.FindAsync(query);
             return result.ToEnumerable().AsQueryable();
+        }
+
+        public async Task<IQueryable<T>> GetAllAsync(Expression<Func<T, bool>> query, IBasePaginator paginator)
+        {
+            return await Task.Run(() =>
+            {
+                var result = Collection.Find(query).Skip(paginator.FirstItemOnPage())
+                                       .Limit(paginator.ItemsPerPage);
+                return result.ToEnumerable().AsQueryable();
+            });
         }
 
         public bool Add(T entity)
