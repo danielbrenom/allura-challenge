@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Allura.Challenge.BackEnd.Extensions;
-using Allura.Challenge.Database.Repositories.Base;
-using Allura.Challenge.Database.Repositories.Interfaces;
-using Allura.Challenge.Domain.Exceptions;
-using Allura.Challenge.Domain.Interfaces;
-using Allura.Challenge.Domain.Models.Data;
-using Allura.Challenge.Domain.Models.Requests;
-using Allura.Challenge.Domain.Validators.Interfaces;
+using Alura.Challenge.BackEnd.Functions.Extensions;
+using Alura.Challenge.Database.Repositories.Base;
+using Alura.Challenge.Database.Repositories.Interfaces;
+using Alura.Challenge.Domain.Exceptions;
+using Alura.Challenge.Domain.Interfaces;
+using Alura.Challenge.Domain.Models.Data;
+using Alura.Challenge.Domain.Models.Requests;
+using Alura.Challenge.Domain.Validators.Interfaces;
 
-namespace Allura.Challenge.BackEnd.Services
+namespace Alura.Challenge.BackEnd.Api.Services
 {
     public class MovieService : IMovieService
     {

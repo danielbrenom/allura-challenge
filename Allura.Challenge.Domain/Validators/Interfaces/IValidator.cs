@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using FluentValidation.Results;
 
-namespace Allura.Challenge.Domain.Validators.Interfaces
+namespace Alura.Challenge.Domain.Validators.Interfaces
 {
     public interface IValidator<TEntity> : FluentValidation.IValidator<TEntity>
     {

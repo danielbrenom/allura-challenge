@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Allura.Challenge.Database.Repositories.Interfaces
+namespace Alura.Challenge.Database.Repositories.Interfaces
 {
     public interface IBaseRepository<T>
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 
-namespace Allura.Challenge.Domain.Interfaces
+namespace Alura.Challenge.Domain.Interfaces
 {
     public interface IAbstractMapper
     {

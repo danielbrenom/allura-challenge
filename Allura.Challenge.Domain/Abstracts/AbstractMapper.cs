@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Allura.Challenge.Domain.Interfaces;
+using Alura.Challenge.Domain.Interfaces;
 using AutoMapper;
 
-namespace Allura.Challenge.Domain.Abstracts
+namespace Alura.Challenge.Domain.Abstracts
 {
     public abstract class AbstractMapper<T> : IAbstractMapper where T : IAbstractMapper, new()
     {

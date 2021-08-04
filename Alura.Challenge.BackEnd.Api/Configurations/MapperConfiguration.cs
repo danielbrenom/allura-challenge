@@ -1,6 +1,6 @@
-﻿using Allura.Challenge.Domain.Abstracts;
+﻿using Alura.Challenge.Domain.Abstracts;
 
-namespace Allura.Challenge.BackEnd.Configurations
+namespace Alura.Challenge.BackEnd.Api.Configurations
 {
     public class MapperConfiguration : AbstractMapper<MapperConfiguration>
     {

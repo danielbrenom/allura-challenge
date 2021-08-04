@@ -1,7 +1,7 @@
-﻿using Allura.Challenge.Database.Repositories.Interfaces;
+﻿using Alura.Challenge.Database.Repositories.Interfaces;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Allura.Challenge.Database.Models
+namespace Alura.Challenge.Database.Models
 {
     public class Movie : IBaseEntity
     {

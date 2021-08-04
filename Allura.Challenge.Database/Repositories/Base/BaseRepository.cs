@@ -2,11 +2,12 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Authentication;
+using System.Text;
 using System.Threading.Tasks;
-using Allura.Challenge.Database.Repositories.Interfaces;
+using Alura.Challenge.Database.Repositories.Interfaces;
 using MongoDB.Driver;
 
-namespace Allura.Challenge.Database.Repositories.Base
+namespace Alura.Challenge.Database.Repositories.Base
 {
     public abstract class BaseRepository<T> : IBaseRepository<T> where T : IBaseEntity
     {
@@ -18,6 +19,8 @@ namespace Allura.Challenge.Database.Repositories.Base
         public BaseRepository(IConnectionSettings connectionSettings)
         {
             var settings = MongoClientSettings.FromUrl(new MongoUrl(connectionSettings.ConnectionString));
+            settings.WriteEncoding = new UTF8Encoding();
+            settings.ReadEncoding = new UTF8Encoding();
             settings.SslSettings = new SslSettings {EnabledSslProtocols = SslProtocols.Tls12};
             Client = new MongoClient(settings);
             _database = Client.GetDatabase(connectionSettings.DatabaseName);

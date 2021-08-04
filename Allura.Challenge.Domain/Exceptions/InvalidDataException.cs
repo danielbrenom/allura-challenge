@@ -2,7 +2,7 @@
 using System.Linq;
 using FluentValidation.Results;
 
-namespace Allura.Challenge.Domain.Exceptions
+namespace Alura.Challenge.Domain.Exceptions
 {
     public class InvalidDataException : System.Exception
     {

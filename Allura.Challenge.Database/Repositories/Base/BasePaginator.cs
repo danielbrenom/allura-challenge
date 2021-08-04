@@ -1,6 +1,6 @@
-﻿using Allura.Challenge.Database.Repositories.Interfaces;
+﻿using Alura.Challenge.Database.Repositories.Interfaces;
 
-namespace Allura.Challenge.Database.Repositories.Base
+namespace Alura.Challenge.Database.Repositories.Base
 {
     public class BasePaginator : IBasePaginator
     {

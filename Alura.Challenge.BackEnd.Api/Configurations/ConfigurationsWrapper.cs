@@ -2,7 +2,7 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 
-namespace Allura.Challenge.BackEnd.Configurations
+namespace Alura.Challenge.BackEnd.Api.Configurations
 {
     public class ConfigurationsWrapper
     {
@@ -11,9 +11,9 @@ namespace Allura.Challenge.BackEnd.Configurations
             var envName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             var builder = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("local.settings.json", optional: false, reloadOnChange: true);
+            builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
             if (!string.IsNullOrWhiteSpace(envName))
-                builder.AddJsonFile($"{envName}.settings.json", optional: true);
+                builder.AddJsonFile($"appsettings.{envName}.json", optional: true);
             builder.AddEnvironmentVariables();
             return builder.Build();
         }

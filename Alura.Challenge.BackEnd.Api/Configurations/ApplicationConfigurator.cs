@@ -1,15 +1,15 @@
 ﻿using System;
-using Allura.Challenge.BackEnd.Services;
-using Allura.Challenge.Database.Repositories;
-using Allura.Challenge.Database.Repositories.Base;
-using Allura.Challenge.Database.Repositories.Interfaces;
-using Allura.Challenge.Domain.Interfaces;
-using Allura.Challenge.Domain.Validators;
-using Allura.Challenge.Domain.Validators.Interfaces;
+using Alura.Challenge.BackEnd.Api.Services;
+using Alura.Challenge.Database.Repositories;
+using Alura.Challenge.Database.Repositories.Base;
+using Alura.Challenge.Database.Repositories.Interfaces;
+using Alura.Challenge.Domain.Interfaces;
+using Alura.Challenge.Domain.Validators;
+using Alura.Challenge.Domain.Validators.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace Allura.Challenge.BackEnd.Configurations
+namespace Alura.Challenge.BackEnd.Api.Configurations
 {
     public class ApplicationConfigurator
     {
@@ -30,10 +30,16 @@ namespace Allura.Challenge.BackEnd.Configurations
                              .AddSingleton<IConnectionSettings>(setting => setting.GetRequiredService<IOptions<ConnectionSettings>>().Value)
                              .AddSingleton<IValidator<Domain.Models.Data.Movie>, MovieValidator>()
                              .AddSingleton<IValidator<Domain.Models.Data.Category>, CategoryValidator>()
+                             .AddSingleton<IValidator<Domain.Models.Data.User>, UserValidator>()
                              .AddTransient<IMovieRepository<Database.Models.Movie>, MovieRepository>()
                              .AddTransient<ICategoryRepository<Database.Models.Category>, CategoryRepository>()
+                             .AddTransient<IUserRepository<Database.Models.User>, UserRepository>()
+                             .AddTransient<IGrantTokenRepository<Database.Models.GrantToken>, GrantTokenRepository>()
                              .AddTransient<IMovieService, MovieService>()
-                             .AddTransient<ICategoryService, CategoryService>();
+                             .AddTransient<ICategoryService, CategoryService>()
+                             .AddTransient<IUserService, UserService>()
+                             .AddTransient<IGrantTokenService, GrantTokenService>()
+                             .AddTransient<ILoginService, LoginService>();
         }
 
         public object GetService(Type tipo)

@@ -1,9 +1,9 @@
-﻿using Allura.Challenge.Domain.Models.Data;
+﻿using Alura.Challenge.Domain.Models.Data;
 using FluentValidation;
 
-namespace Allura.Challenge.Domain.Validators
+namespace Alura.Challenge.Domain.Validators
 {
-    public class MovieValidator : Domain.Abstracts.AbstractValidator<Movie>
+    public class MovieValidator : Abstracts.AbstractValidator<Movie>
     {
         protected override void SetRules()
         {

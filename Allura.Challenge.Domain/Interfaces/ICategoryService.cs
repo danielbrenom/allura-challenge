@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Allura.Challenge.Domain.Models.Data;
-using Allura.Challenge.Domain.Models.Requests;
+using Alura.Challenge.Domain.Models.Data;
+using Alura.Challenge.Domain.Models.Requests;
 
-namespace Allura.Challenge.Domain.Interfaces
+namespace Alura.Challenge.Domain.Interfaces
 {
     public interface ICategoryService
     {

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using Allura.Challenge.Database.Models;
-using Allura.Challenge.Database.Repositories.Base;
-using Allura.Challenge.Database.Repositories.Interfaces;
+using Alura.Challenge.Database.Models;
+using Alura.Challenge.Database.Repositories.Base;
+using Alura.Challenge.Database.Repositories.Interfaces;
 
-namespace Allura.Challenge.Database.Repositories
+namespace Alura.Challenge.Database.Repositories
 {
     public class CategoryRepository : BaseRepository<Category>, ICategoryRepository<Category>
     {

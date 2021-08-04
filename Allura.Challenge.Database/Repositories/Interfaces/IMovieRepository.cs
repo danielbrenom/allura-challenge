@@ -1,4 +1,4 @@
-﻿namespace Allura.Challenge.Database.Repositories.Interfaces
+﻿namespace Alura.Challenge.Database.Repositories.Interfaces
 {
     public interface IMovieRepository<T> : IBaseRepository<T>
     {

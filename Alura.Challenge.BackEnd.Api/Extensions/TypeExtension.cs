@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using Allura.Challenge.BackEnd.Configurations;
+using Alura.Challenge.BackEnd.Api.Configurations;
 using AutoMapper;
 
-namespace Allura.Challenge.BackEnd.Extensions
+namespace Alura.Challenge.BackEnd.Functions.Extensions
 {
     public static class TypeExtension
     {

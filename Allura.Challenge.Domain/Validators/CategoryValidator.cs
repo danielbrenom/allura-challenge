@@ -1,9 +1,9 @@
-﻿using Allura.Challenge.Domain.Models.Data;
+﻿using Alura.Challenge.Domain.Models.Data;
 using FluentValidation;
 
-namespace Allura.Challenge.Domain.Validators
+namespace Alura.Challenge.Domain.Validators
 {
-    public class CategoryValidator : Domain.Abstracts.AbstractValidator<Category>
+    public class CategoryValidator : Alura.Challenge.Domain.Abstracts.AbstractValidator<Category>
     {
         protected override void SetRules()
         {

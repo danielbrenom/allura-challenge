@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Alura.Challenge.Database.Models;
 
-namespace Allura.Challenge.Database.Repositories.Interfaces
+namespace Alura.Challenge.Database.Repositories.Interfaces
 {
     public interface ICategoryRepository<T> : IBaseRepository<T>
     {
-        Task<Models.Category> GetDefaultCategory();
+        Task<Category> GetDefaultCategory();
     }
 }

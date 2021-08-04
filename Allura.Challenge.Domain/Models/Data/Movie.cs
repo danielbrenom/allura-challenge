@@ -1,4 +1,4 @@
-﻿namespace Allura.Challenge.Domain.Models.Data
+﻿namespace Alura.Challenge.Domain.Models.Data
 {
     public class Movie
     {

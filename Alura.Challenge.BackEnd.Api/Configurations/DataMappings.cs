@@ -1,9 +1,9 @@
-﻿using Allura.Challenge.Domain.Models.Data;
-using Allura.Challenge.Domain.Models.Requests;
-using Allura.Challenge.Domain.Models.Responses;
+﻿using Alura.Challenge.Domain.Models.Data;
+using Alura.Challenge.Domain.Models.Requests;
+using Alura.Challenge.Domain.Models.Responses;
 using AutoMapper;
 
-namespace Allura.Challenge.BackEnd.Configurations
+namespace Alura.Challenge.BackEnd.Api.Configurations
 {
     public class DataMappings : Profile
     {
@@ -17,6 +17,11 @@ namespace Allura.Challenge.BackEnd.Configurations
             CreateMap<Category, Database.Models.Category>().ReverseMap();
             CreateMap<Category, CategoryResponse>().ReverseMap();
             CreateMap<Category, string>().ConvertUsing(c => c.Id);
+            CreateMap<User, Database.Models.User>().ReverseMap();
+            CreateMap<User, UserRequest>().ReverseMap();
+            CreateMap<User, UserCreatedResponse>().ReverseMap();
+            CreateMap<User, LoginResponse>();
+            CreateMap<GrantToken, Database.Models.GrantToken>().ReverseMap();
         }
     }
 }

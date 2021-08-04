@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Allura.Challenge.Domain.Models.Requests
+namespace Alura.Challenge.Domain.Models.Requests
 {
     public class CategoryRequest
     {

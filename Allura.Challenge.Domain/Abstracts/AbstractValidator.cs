@@ -2,7 +2,7 @@
 using FluentValidation;
 using FluentValidation.Results;
 
-namespace Allura.Challenge.Domain.Abstracts
+namespace Alura.Challenge.Domain.Abstracts
 {
     public abstract class AbstractValidator<TEntity> : FluentValidation.AbstractValidator<TEntity>, Validators.Interfaces.IValidator<TEntity>
     {

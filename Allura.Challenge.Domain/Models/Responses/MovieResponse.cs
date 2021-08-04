@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Allura.Challenge.Domain.Models.Responses
+namespace Alura.Challenge.Domain.Models.Responses
 {
     public class MovieResponse
     {

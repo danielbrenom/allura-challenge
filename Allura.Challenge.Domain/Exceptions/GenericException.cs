@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Allura.Challenge.Domain.Exceptions
+namespace Alura.Challenge.Domain.Exceptions
 {
     public class GenericException : Exception
     {
