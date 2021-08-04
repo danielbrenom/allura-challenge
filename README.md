@@ -2,11 +2,10 @@
 
 ## Tech Stack
 
-- Esta API foi desenvolvida utilizando a tecnologia serverless AzureFunctions
+- Esta API foi desenvolvida utilizando a framework NET 5
 
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
-![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=azure-devops&logoColor=white)
 
 - Para banco de dados foi utilizado o banco NoSql MongoDB
 
@@ -30,7 +29,6 @@ Este projeto pode ser executado de duas formas :
 
 - Executado a partir de IDE de escolha que possua a ferramenta AzureFunctions Toolkit;
 - Executando e buildando a imagem docker do projeto.
-    - Para que a mesma funcione corretamente é necessário possuir um AzureWebJobsStorage e utilizar a string de conexão no arquivo `local.settings.json`
   
 # Licença
 
