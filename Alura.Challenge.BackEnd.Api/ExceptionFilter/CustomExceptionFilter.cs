@@ -12,6 +12,7 @@ namespace Alura.Challenge.BackEnd.Api.ExceptionFilter
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
+            if (context.Exception is null) return;
             context.Result = context.Exception switch
             {
                 GenericException genericException => new JsonResult(genericException.Message) { StatusCode = genericException.StatusCode },
