@@ -3,7 +3,7 @@
 ## Tech Stack
 
 - Esta API foi desenvolvida utilizando a framework NET 5.
-- Link para acessar a [API](https://aluraflix.azurewebsites.net/swagger/ui).
+- Link para acessar a [API](https://aluraflix.azurewebsites.net/swagger/index.html).
 
 ![.Net](https://img.shields.io/badge/.NET-5C2D91?style=for-the-badge&logo=.net&logoColor=white)
 ![C#](https://img.shields.io/badge/c%23-%23239120.svg?style=for-the-badge&logo=c-sharp&logoColor=white)
