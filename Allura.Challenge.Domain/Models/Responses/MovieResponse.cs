@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace Alura.Challenge.Domain.Models.Responses
 {
@@ -7,22 +8,34 @@ namespace Alura.Challenge.Domain.Models.Responses
         /// <summary>
         /// Identificador do video
         /// </summary>
-        [JsonProperty("id")] public string Id { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
         /// <summary>
         /// Titulo do video
         /// </summary>
-        [JsonProperty("titulo")] public string Title { get; set; }
+        [JsonPropertyName("titulo")]
+        [JsonProperty("titulo")]
+        public string Title { get; set; }
+
         /// <summary>
         /// Descrição do video
         /// </summary>
-        [JsonProperty("descricao")] public string Description { get; set; }
+        [JsonPropertyName("descricao")]
+        [JsonProperty("descricao")]
+        public string Description { get; set; }
+
         /// <summary>
         /// URL do video
         /// </summary>
-        [JsonProperty("url")] public string Url { get; set; }
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
+
         /// <summary>
         /// Categoria do video
         /// </summary>
-        [JsonProperty("categoriaId")] public string Category { get; set; }
+        [JsonPropertyName("categoriaId")]
+        [JsonProperty("categoriaId")]
+        public string Category { get; set; }
     }
 }

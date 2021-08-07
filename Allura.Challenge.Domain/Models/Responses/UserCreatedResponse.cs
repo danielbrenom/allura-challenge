@@ -1,4 +1,7 @@
-﻿namespace Alura.Challenge.Domain.Models.Responses
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+
+namespace Alura.Challenge.Domain.Models.Responses
 {
     public class UserCreatedResponse
     {
@@ -9,6 +12,8 @@
         /// <summary>
         /// Nome do usuario
         /// </summary>
+        [JsonPropertyName("nome")]
+        [JsonProperty("nome")]
         public string Name { get; set; }
         /// <summary>
         /// Email do usuario
