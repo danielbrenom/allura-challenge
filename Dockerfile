@@ -1,14 +1,22 @@
-﻿FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS installer-env
+﻿FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
 
-COPY . /src/dotnet-function-app
-RUN cd /src/dotnet-function-app && \
-    mkdir -p /home/site/wwwroot && \
-    dotnet publish "Allura.Challenge.BackEnd/Allura.Challenge.BackEnd.csproj" --output /home/site/wwwroot
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /src
+COPY ["Alura.Challenge.BackEnd.Api/Alura.Challenge.BackEnd.Api.csproj", "Alura.Challenge.BackEnd.Api/"]
+RUN dotnet restore "Alura.Challenge.BackEnd.Api/Alura.Challenge.BackEnd.Api.csproj"
+COPY . .
+WORKDIR "/src/Alura.Challenge.BackEnd.Api"
+RUN dotnet build "Alura.Challenge.BackEnd.Api.csproj" -c Release -o /app/build
 
-# To enable ssh & remote debugging on app service change the base image to the one below
- FROM mcr.microsoft.com/azure-functions/dotnet:3.0-appservice
-#FROM mcr.microsoft.com/azure-functions/dotnet:3.0
-ENV AzureWebJobsScriptRoot=/home/site/wwwroot \
-    AzureFunctionsJobHost__Logging__Console__IsEnabled=true
+FROM build AS publish
+RUN dotnet dev-certs https -ep %APPDATA%\ASP.NET\Https\Alura.Challenge.BackEnd.Api.pfx -p dK3zruo?.ZQ
+RUN dotnet dev-certs https --trust
+RUN dotnet publish "Alura.Challenge.BackEnd.Api.csproj" -c Release -o /app/publish
 
-COPY --from=installer-env ["/home/site/wwwroot", "/home/site/wwwroot"]
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "Alura.Challenge.BackEnd.Api.dll"]

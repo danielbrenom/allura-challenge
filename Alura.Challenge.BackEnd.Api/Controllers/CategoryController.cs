@@ -4,6 +4,7 @@ using Alura.Challenge.BackEnd.Functions.Extensions;
 using Alura.Challenge.Domain.Interfaces;
 using Alura.Challenge.Domain.Models.Requests;
 using Alura.Challenge.Domain.Models.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alura.Challenge.BackEnd.Api.Controllers
@@ -26,6 +27,8 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// </summary>
         /// <param name="id"></param>
         [HttpGet("/categorias/{id}")]
+        [Authorize]
+        [ProducesResponseType(typeof(CategoryResponse), 200)]
         public async Task<IActionResult> Get(string id)
         {
             var category = await CategoryService.GetCategory(id);
@@ -37,10 +40,12 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// </summary>
         /// <param name="page"></param>
         [HttpGet("/categorias")]
+        [ProducesResponseType(typeof(List<CategoryResponse>), 200)]
+        [Authorize]
         public async Task<IActionResult> GetAll([FromQuery] string page)
         {
             var category = await CategoryService.GetCategories(page);
-            return new JsonResult(category.GetAs<CategoryResponse>());
+            return new JsonResult(category.GetAs<List<CategoryResponse>>());
         }
         
         /// <summary>
@@ -50,6 +55,8 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// <param name="page"></param>
         /// <returns></returns>
         [HttpGet("/categorias/{id}/videos")]
+        [ProducesResponseType(typeof(MovieByCategoryResponse), 200)]
+        [Authorize]
         public async Task<IActionResult> GetAllByCategory(string id, [FromQuery] string page)
         {
             var moviesByCategory = await MovieService.GetMoviesByCategory(id, page);
@@ -62,6 +69,8 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// <param name="data">CAtegory data</param>
         /// <returns></returns>
         [HttpPost("/categorias")]
+        [ProducesResponseType(typeof(CategoryResponse), 201)]
+        [Authorize]
         public async Task<IActionResult> Create([FromBody] CategoryRequest data)
         {
             var category = await CategoryService.CreateCategory(data);
@@ -75,6 +84,8 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// <param name="data">Category data to update</param>
         /// <returns></returns>
         [HttpPatch("/categorias/{id}")]
+        [ProducesResponseType(typeof(CategoryResponse), 200)]
+        [Authorize]
         public async Task<IActionResult> Update(string id, [FromBody] CategoryRequest data)
         {
             var updatedCategory = await CategoryService.UpdateCategory(data, id);
@@ -87,6 +98,8 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("/categorias/{id}")]
+        [ProducesResponseType(typeof(OkResult), 200)]
+        [Authorize]
         public async Task<IActionResult> Delete(string id)
         {
             await CategoryService.DeleteCategory(id);

@@ -16,7 +16,7 @@ namespace Alura.Challenge.BackEnd.Api.OpenAPIFilters
                                         .Distinct()
                                         .ToList();
             if (!requiredScopes.Any()) return;
-            operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized" });
+            operation.Responses.Add("401", new OpenApiResponse { Description = "Unauthorized - Não autorizado" });
 
             var securityScheme = new OpenApiSecurityScheme
             {

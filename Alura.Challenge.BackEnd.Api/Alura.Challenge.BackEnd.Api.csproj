@@ -24,4 +24,12 @@
       <None Include="openapisettings.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Remove="secret.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Extensions\EnvironmentExtension.cs" />
+    </ItemGroup>
+
 </Project>

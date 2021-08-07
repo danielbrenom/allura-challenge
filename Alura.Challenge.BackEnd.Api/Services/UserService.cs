@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Alura.Challenge.BackEnd.Functions.Extensions;
 using Alura.Challenge.Database.Repositories.Interfaces;
+using Alura.Challenge.Domain.Exceptions;
 using Alura.Challenge.Domain.Interfaces;
 using Alura.Challenge.Domain.Models.Data;
 using Alura.Challenge.Domain.Models.Requests;
@@ -25,6 +26,9 @@ namespace Alura.Challenge.BackEnd.Api.Services
 
         public async Task<User> CreateUser(UserRequest user)
         {
+            var searchUser = await GetUserByEmail(user.Email);
+            if (searchUser != null)
+                throw new InvalidDataException("User email already exists", null, null);
             var newUser = new User
             {
                 Id = System.Guid.NewGuid().ToString("N"),

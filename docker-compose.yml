@@ -1,18 +1,29 @@
 ﻿version: '2.1'
 
-services :
+services:
   allura-challenge-api:
     image: allura-challenge-api
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - IS_DOCKER_BUILD=true
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://localhost;http://localhost
+      - ASPNETCORE_HTTPS_PORT=443
+      - Kestrel:Certificates:Default:Path=/root/.aspnet/https/Alura.Challenge.BackEnd.Api.pfx
+      - Kestrel:Certificates:Default:Password=dK3zruo?.ZQ
     ports:
-      - "7071:80"
-    networks: 
+      - "5000:80"
+      - "5001:443"
+    volumes:
+      - ${APPDATA}/ASP.NET/Https/:/root/.aspnet/https/
+      - ${APPDATA}/Microsoft/UserSecrets/:/root/.microsoft/usersecrets
+    networks:
       - allura-challenge-network
     links:
       - mongo
-        
+
   mongo:
     image: mongo:3.6
     container_name: allura-challenge-mongo
@@ -22,7 +33,7 @@ services :
       - allura-challenge-network
     environment:
       MONGO_INITDB_DATABASE: "AlluraChallenge"
-      
+
 networks:
   allura-challenge-network:
     driver: bridge

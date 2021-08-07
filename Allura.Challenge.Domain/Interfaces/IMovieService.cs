@@ -10,6 +10,7 @@ namespace Alura.Challenge.Domain.Interfaces
         Task<Movie> GetMovie(string id);
         Task<List<Movie>> GetMovies(string page);
         Task<List<Movie>> GetMovies(string query, string page);
+        Task<List<Movie>> GetFreeMovies();
         Task<List<Movie>> GetMoviesByCategory(string category, string page);
         Task<Movie> CreateMovie(MovieRequest movieRequest);
         Task<Movie> UpdateMovie(MovieRequest movieRequest, string id);

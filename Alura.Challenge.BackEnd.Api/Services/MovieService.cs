@@ -40,6 +40,13 @@ namespace Alura.Challenge.BackEnd.Api.Services
             var result = await MovieRepository.GetAllAsync(paginator);
             return result.ToList().GetAs<List<Movie>>();
         }
+        
+        public async Task<List<Movie>> GetFreeMovies()
+        {
+            var paginator = new BasePaginator(5) {Page = 1};
+            var result = await MovieRepository.GetAllAsync(paginator);
+            return result.ToList().GetAs<List<Movie>>();
+        }
 
         public async Task<List<Movie>> GetMovies(string query, string page)
         {

@@ -24,7 +24,7 @@ namespace Alura.Challenge.BackEnd.Api.Services
                 throw new GenericException("User doesn't exist", 404);
             var result = BCrypt.Net.BCrypt.EnhancedVerify(userRequest.Password, user.Password);
             if (!result)
-                throw new GenericException("Passwords don't match", 401);
+                throw new GenericException("Invalid credentials", 401);
             var token = GrantTokenService.GenerateToken(user);
             return new LoginResponse
             {

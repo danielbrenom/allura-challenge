@@ -4,6 +4,7 @@ using Alura.Challenge.BackEnd.Functions.Extensions;
 using Alura.Challenge.Domain.Interfaces;
 using Alura.Challenge.Domain.Models.Requests;
 using Alura.Challenge.Domain.Models.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -26,21 +27,11 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// <response code="200">Movie found</response>
         [HttpGet("/videos/{id}")]
         [ProducesResponseType(typeof(MovieResponse), 200)]
+        [Authorize]
         public async Task<IActionResult> GetMovie(string id)
         {
-            try
-            {
-                var movie = await MovieService.GetMovie(id);
-                return new JsonResult(movie.GetAs<MovieResponse>());
-            }
-            catch (Domain.Exceptions.GenericException e)
-            {
-                return new JsonResult(e.Message) { StatusCode = e.StatusCode };
-            }
-            catch (System.Exception e)
-            {
-                return new JsonResult(e.Message) { StatusCode = 500 };
-            }
+            var movie = await MovieService.GetMovie(id);
+            return new JsonResult(movie.GetAs<MovieResponse>());
         }
 
         /// <summary>
@@ -51,21 +42,24 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// <response code="200">List of movies</response>
         [HttpGet("/videos")]
         [ProducesResponseType(typeof(List<MovieResponse>), 200)]
+        [Authorize]
         public async Task<IActionResult> GetMovies([FromQuery] string query, [FromQuery] string page)
         {
-            try
-            {
-                var movies = await MovieService.GetMovies(query, page);
-                return new JsonResult(movies.GetAs<List<MovieResponse>>());
-            }
-            catch (Domain.Exceptions.GenericException e)
-            {
-                return new JsonResult(e.Message) { StatusCode = e.StatusCode };
-            }
-            catch (System.Exception e)
-            {
-                return new JsonResult(e.Message) { StatusCode = 500 };
-            }
+            var movies = await MovieService.GetMovies(query, page);
+            return new JsonResult(movies.GetAs<List<MovieResponse>>());
+        }
+
+        /// <summary>
+        /// Gets a free list of movies
+        /// </summary>
+        /// <response code="200">A list of movies</returns>
+        [HttpGet("/videos/free")]
+        [ProducesResponseType(typeof(List<MovieResponse>), 200)]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetFreeMovies()
+        {
+            var movies = await MovieService.GetFreeMovies();
+            return new JsonResult(movies.GetAs<List<MovieResponse>>());
         }
 
         /// <summary>
@@ -74,6 +68,7 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// <param name="movie">Movie data to add</param>
         [HttpPost("/videos")]
         [ProducesResponseType(typeof(MovieResponse), 201)]
+        [Authorize]
         public async Task<IActionResult> Add([FromBody, BindRequired] MovieRequest movie)
         {
             var response = await MovieService.CreateMovie(movie);
@@ -87,6 +82,7 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// <param name="id">Id of the movie</param>
         [HttpPatch("/videos/{id}")]
         [ProducesResponseType(typeof(MovieResponse), 200)]
+        [Authorize]
         public async Task<IActionResult> Update([FromBody, BindRequired] MovieRequest movie, string id)
         {
             var updatedMovie = await MovieService.UpdateMovie(movie, id);
@@ -98,6 +94,7 @@ namespace Alura.Challenge.BackEnd.Api.Controllers
         /// </summary>
         /// <param name="id">Id of the movie</param>
         [HttpDelete("/videos/{id}")]
+        [Authorize]
         [ProducesResponseType(200)]
         public async Task<IActionResult> Delete(string id)
         {
